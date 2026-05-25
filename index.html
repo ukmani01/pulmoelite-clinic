@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Lung Care Clinic | Dr. Arun Gangadhar | Premier Pulmonology</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Tailwind CSS v3.4.19 + custom config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+            'display': ['Playfair Display', 'serif'],
+          },
+          colors: {
+            medical: {
+              teal: '#0f5b5a',
+              tealLight: '#2c7a7b',
+              slate: '#475569',
+            }
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.6s ease-out forwards',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* custom utilities & carousel dots */
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
+    .fade-up { opacity: 0; animation: fadeUp 0.6s ease-out forwards; }
+    .fade-up-delay-1 { animation-delay: 0.1s; }
+    .fade-up-delay-2 { animation-delay: 0.2s; }
+    .fade-up-delay-3 { animation-delay: 0.3s; }
+    .testi-track { scrollbar-width: none; -ms-overflow-style: none; }
+    .testi-track::-webkit-scrollbar { display: none; }
+    .dot { transition: all 0.2s ease; width: 8px; height: 8px; background-color: #cbd5e1; border-radius: 50%; cursor: pointer; }
+    .dot.active { width: 24px; background-color: #0f5b5a; border-radius: 12px; }
+    .nav-link.active { border-bottom: 2px solid #0f5b5a; color: #0f5b5a; }
+    @media (max-width: 768px) {
+      .nav-link.active { border-bottom: none; background-color: #e6f6f5; }
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-800 antialiased text-[15px] md:text-base leading-relaxed">
+
+  <!-- ========== STICKY NAVBAR (polished) ========== -->
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 transition-all">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-3 flex items-center justify-between">
+      <div class="flex flex-col">
+        <span class="font-display text-xl sm:text-2xl font-extrabold text-slate-800 tracking-tight">LUNG CARE</span>
+        <span class="text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-teal-700">Dr. Arun Gangadhar · Pulmonology</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="#home" class="nav-link px-4 py-2 text-sm font-medium text-slate-600 transition">Home</a>
+        <a href="#symptoms" class="nav-link px-4 py-2 text-sm font-medium text-slate-600 transition">Symptoms</a>
+        <a href="#services" class="nav-link px-4 py-2 text-sm font-medium text-slate-600 transition">Services</a>
+        <a href="#doctor" class="nav-link px-4 py-2 text-sm font-medium text-slate-600 transition">Doctor</a>
+        <a href="#clinic" class="nav-link px-4 py-2 text-sm font-medium text-slate-600 transition">Clinic</a>
+        <a href="#testimonials" class="nav-link px-4 py-2 text-sm font-medium text-slate-600 transition">Reviews</a>
+        <a href="#book" class="bg-teal-700 text-white px-5 py-2 text-sm font-semibold rounded-full hover:bg-teal-800 transition ml-2"><i class="fas fa-calendar-check mr-1"></i> Book now</a>
+      </nav>
+      <button id="hamburgerBtn" class="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
+        <span class="w-6 h-0.5 bg-slate-800 rounded-full"></span>
+        <span class="w-6 h-0.5 bg-slate-800 rounded-full"></span>
+        <span class="w-6 h-0.5 bg-slate-800 rounded-full"></span>
+      </button>
+    </div>
+    <div id="mobileMenu" class="fixed top-[70px] left-0 w-full bg-white border-b border-gray-100 transform -translate-x-full transition-transform duration-300 z-40 md:hidden">
+      <div class="flex flex-col p-6 space-y-4">
+        <a href="#home" class="mobile-nav-link text-slate-700 font-medium py-2 border-b border-gray-100"><i class="fas fa-home w-5 mr-2"></i> Home</a>
+        <a href="#symptoms" class="mobile-nav-link text-slate-700 font-medium py-2 border-b border-gray-100"><i class="fas fa-stethoscope w-5 mr-2"></i> Symptoms</a>
+        <a href="#services" class="mobile-nav-link text-slate-700 font-medium py-2 border-b border-gray-100"><i class="fas fa-lungs w-5 mr-2"></i> Services</a>
+        <a href="#doctor" class="mobile-nav-link text-slate-700 font-medium py-2 border-b border-gray-100"><i class="fas fa-user-md w-5 mr-2"></i> Doctor</a>
+        <a href="#clinic" class="mobile-nav-link text-slate-700 font-medium py-2 border-b border-gray-100"><i class="fas fa-map-marker-alt w-5 mr-2"></i> Clinic</a>
+        <a href="#testimonials" class="mobile-nav-link text-slate-700 font-medium py-2 border-b border-gray-100"><i class="fas fa-star w-5 mr-2"></i> Reviews</a>
+        <a href="#book" class="bg-teal-700 text-white text-center py-2 rounded-full font-semibold mt-2"><i class="fas fa-calendar-plus mr-1"></i> Book Appointment</a>
+        <button id="closeMobileBtn" class="absolute top-4 right-4 text-slate-400 text-2xl">&times;</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========== HERO SECTION (image + cards preserved, polished) ========== -->
+    <section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-b from-white to-teal-50/10 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <!-- LEFT content -->
+          <div class="fade-up">
+            <div class="inline-flex items-center gap-2 bg-teal-50 px-3 py-1.5 rounded-full text-teal-800 text-xs font-semibold mb-5">
+              <span class="w-2 h-2 bg-teal-600 rounded-full animate-pulse"></span> Specialist Pulmonology · Coimbatore
+            </div>
+            <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-[-0.04em] leading-[1.1] md:leading-[1.05] text-slate-900">
+              Loud snoring?<br>It could be <span class="text-teal-700">Sleep Apnoea</span>
+            </h1>
+            <p class="text-slate-600 text-[15px] md:text-base leading-relaxed mt-6 max-w-lg">Early evaluation prevents heart disease, stroke, and chronic fatigue. Trusted advanced pulmonary care with a human touch.</p>
+            <div class="flex flex-wrap gap-4 mt-8">
+              <a href="#book" class="bg-teal-700 hover:bg-teal-800 text-white px-6 py-3 rounded-full font-semibold transition"><i class="fas fa-calendar-check mr-2"></i> Book Appointment</a>
+              <a href="#symptoms" class="border border-slate-300 hover:border-teal-600 text-slate-700 hover:text-teal-700 px-6 py-3 rounded-full font-semibold transition"><i class="fas fa-stethoscope mr-2"></i> Check Symptoms</a>
+            </div>
+            <div class="flex flex-wrap gap-4 mt-10">
+              <div class="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-100 bg-white"><i class="fas fa-trophy text-teal-600 text-sm w-5"></i><span class="text-sm font-medium">20+ Years Experience</span></div>
+              <div class="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-100 bg-white"><i class="fas fa-lungs text-teal-600 text-sm w-5"></i><span class="text-sm font-medium">Interventional Pulmonology</span></div>
+              <div class="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-100 bg-white"><i class="fas fa-microscope text-teal-600 text-sm w-5"></i><span class="text-sm font-medium">Evidence-based Care</span></div>
+            </div>
+          </div>
+
+          <!-- RIGHT side (exactly as you provided, untouched structure) -->
+          <div class="fade-up fade-delay-1 relative">
+            <div class="absolute -top-10 -right-10 w-72 h-72 bg-teal-200/40 blur-3xl rounded-full"></div>
+            <div class="relative overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_25px_80px_rgba(15,91,90,0.12)]">
+              <div class="relative">
+                <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80" alt="Pulmonologist Consultation" class="w-full h-[340px] sm:h-[480px] object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+                <div class="absolute bottom-5 left-5 right-5 sm:right-auto sm:max-w-[300px] bg-white/95 backdrop-blur-xl border border-white/60 rounded-3xl p-5 shadow-2xl">
+                  <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+                      <i class="fa-solid fa-heart-pulse text-lg"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold text-slate-900 text-sm">Early diagnosis saves lives</h4>
+                      <p class="text-xs text-slate-500 leading-5 mt-2">Timely sleep and lung evaluation helps prevent long-term breathing and cardiac complications.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 p-5 bg-white">
+                <div class="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:shadow-lg transition">
+                  <div class="w-11 h-11 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center"><i class="fa-solid fa-clock"></i></div>
+                  <p class="mt-4 text-xs uppercase tracking-wider text-slate-500">Consultation</p>
+                  <h3 class="mt-1 font-semibold text-slate-900">Mon – Sat</h3>
+                  <p class="text-sm text-slate-600">6:00 PM – 8:30 PM</p>
+                </div>
+                <div class="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:shadow-lg transition">
+                  <div class="w-11 h-11 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center"><i class="fa-solid fa-phone-volume"></i></div>
+                  <p class="mt-4 text-xs uppercase tracking-wider text-slate-500">Emergency</p>
+                  <h3 class="mt-1 font-semibold text-slate-900">+91 98765 43210</h3>
+                  <p class="text-sm text-slate-600">24×7 quick support</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SYMPTOMS SECTION ========== -->
+    <section id="symptoms" class="py-16 md:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div class="text-center max-w-2xl mx-auto fade-up">
+          <div class="text-teal-600 text-sm font-semibold uppercase tracking-wide"><i class="fas fa-waveform mr-1"></i> Identify early signs</div>
+          <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-[-0.02em] text-slate-800 mt-2">Do you experience any of these?</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-12">
+          <div class="bg-white border border-gray-100 rounded-2xl p-6 transition hover:border-teal-200 hover:bg-slate-50/20 fade-up-delay-1">
+            <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center mb-4 text-teal-700 text-xl"><i class="fas fa-snooze"></i></div>
+            <h3 class="font-semibold text-lg tracking-tight">Loud snoring</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mt-2">Habitual snoring, especially with pauses in breathing, is a key sleep apnoea marker.</p>
+          </div>
+          <div class="bg-white border border-gray-100 rounded-2xl p-6 transition hover:border-teal-200 hover:bg-slate-50/20 fade-up-delay-2">
+            <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center mb-4 text-teal-700 text-xl"><i class="fas fa-bed"></i></div>
+            <h3 class="font-semibold text-lg tracking-tight">Daytime fatigue</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mt-2">Excessive sleepiness, poor concentration, morning headache — signs of disrupted sleep.</p>
+          </div>
+          <div class="bg-white border border-gray-100 rounded-2xl p-6 transition hover:border-teal-200 hover:bg-slate-50/20 fade-up-delay-3">
+            <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center mb-4 text-teal-700 text-xl"><i class="fas fa-heartbeat"></i></div>
+            <h3 class="font-semibold text-lg tracking-tight">High BP / Uncontrolled sugar</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mt-2">Sleep apnoea worsens blood pressure and insulin resistance significantly.</p>
+          </div>
+          <div class="bg-white border border-gray-100 rounded-2xl p-6 transition hover:border-teal-200 hover:bg-slate-50/20 fade-up-delay-4">
+            <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center mb-4 text-teal-700 text-xl"><i class="fas fa-lungs"></i></div>
+            <h3 class="font-semibold text-lg tracking-tight">Breathlessness / Chronic cough</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mt-2">Persistent respiratory symptoms need specialist pulmonary evaluation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SERVICES SECTION (background images preserved) ========== -->
+    <section id="services" class="py-16 md:py-24 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div class="text-center fade-up">
+          <div class="text-teal-600 text-sm font-semibold uppercase tracking-wide"><i class="fas fa-stethoscope mr-1"></i> Comprehensive care</div>
+          <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-[-0.02em] text-slate-800 mt-2">Specialized pulmonary services</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-12">
+          <div class="rounded-2xl overflow-hidden relative group transition hover:scale-[1.01] duration-300" style="background-image: url('https://plus.unsplash.com/premium_photo-1661397087554-2774b7e7332f?q=80&w=870&auto=format&fit=crop'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20"></div>
+            <div class="relative p-6 min-h-[280px] sm:min-h-[300px] flex flex-col justify-end">
+              <h3 class="font-bold text-xl text-white mb-1"><i class="fas fa-moon mr-2"></i> Sleep Apnoea & Snoring</h3>
+              <p class="text-white/90 text-sm leading-relaxed mt-1">Home sleep studies, CPAP therapy, long-term management.</p>
+              <a href="#book" class="inline-block mt-4 text-white font-semibold text-sm border-b border-white/50 pb-0.5 hover:border-white transition w-fit">Consult →</a>
+            </div>
+          </div>
+          <div class="rounded-2xl overflow-hidden relative group transition hover:scale-[1.01] duration-300" style="background-image: url('https://plus.unsplash.com/premium_photo-1664910153774-f32c3320cb8e?q=80&w=870&auto=format&fit=crop'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20"></div>
+            <div class="relative p-6 min-h-[280px] sm:min-h-[300px] flex flex-col justify-end">
+              <h3 class="font-bold text-xl text-white mb-1"><i class="fas fa-allergies mr-2"></i> Asthma & Allergy Care</h3>
+              <p class="text-white/90 text-sm leading-relaxed mt-1">Inhaler optimisation, trigger control, personalised action plans.</p>
+              <a href="#book" class="inline-block mt-4 text-white font-semibold text-sm border-b border-white/50 pb-0.5 hover:border-white transition w-fit">Learn more →</a>
+            </div>
+          </div>
+          <div class="rounded-2xl overflow-hidden relative group transition hover:scale-[1.01] duration-300" style="background-image: url('https://images.unsplash.com/photo-1758691462413-b07dee2933fe?w=500&auto=format&fit=crop'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20"></div>
+            <div class="relative p-6 min-h-[280px] sm:min-h-[300px] flex flex-col justify-end">
+              <h3 class="font-bold text-xl text-white mb-1"><i class="fas fa-lungs mr-2"></i> COPD Management</h3>
+              <p class="text-white/90 text-sm leading-relaxed mt-1">Pulmonary rehab, bronchodilator therapy, exacerbation prevention.</p>
+              <a href="#book" class="inline-block mt-4 text-white font-semibold text-sm border-b border-white/50 pb-0.5 hover:border-white transition w-fit">Get help →</a>
+            </div>
+          </div>
+          <div class="rounded-2xl overflow-hidden relative group transition hover:scale-[1.01] duration-300" style="background-image: url('https://images.unsplash.com/photo-1599726159910-f4378e03f9bb?w=500&auto=format&fit=crop'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20"></div>
+            <div class="relative p-6 min-h-[280px] sm:min-h-[300px] flex flex-col justify-end">
+              <h3 class="font-bold text-xl text-white mb-1"><i class="fas fa-microscope mr-2"></i> Advanced Diagnostics</h3>
+              <p class="text-white/90 text-sm leading-relaxed mt-1">PFT, Bronchoscopy, HRCT analysis, sleep lab referral.</p>
+              <a href="#book" class="inline-block mt-4 text-white font-semibold text-sm border-b border-white/50 pb-0.5 hover:border-white transition w-fit">Book test →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== DOCTOR SECTION ========== -->
+    <section id="doctor" class="py-16 md:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div class="text-center fade-up">
+          <div class="text-teal-600 text-sm font-semibold uppercase tracking-wide"><i class="fas fa-user-md mr-1"></i> Meet your specialist</div>
+          <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-[-0.02em] text-slate-800">Dr. Arun Gangadhar</h2>
+        </div>
+        <div class="mt-12 bg-white border border-gray-100 rounded-2xl p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center">
+          <img class="w-40 h-48 md:w-48 md:h-56 object-cover rounded-xl" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&h=400&fit=crop" alt="Dr. Arun">
+          <div>
+            <h3 class="text-2xl font-bold tracking-tight">Interventional Pulmonologist</h3>
+            <div class="flex flex-wrap gap-2 my-4">
+              <span class="bg-teal-50 text-teal-800 px-3 py-1 rounded-full text-xs font-semibold"><i class="fas fa-graduation-cap mr-1"></i> MBBS, DNB</span>
+              <span class="bg-teal-50 text-teal-800 px-3 py-1 rounded-full text-xs font-semibold"><i class="fas fa-certificate mr-1"></i> MNAMS</span>
+              <span class="bg-teal-50 text-teal-800 px-3 py-1 rounded-full text-xs font-semibold"><i class="fas fa-heartbeat mr-1"></i> IDCCM</span>
+              <span class="bg-teal-50 text-teal-800 px-3 py-1 rounded-full text-xs font-semibold"><i class="fas fa-globe mr-1"></i> European Diploma Resp Med</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed">Dr. Arun Gangadhar brings international training and evidence-based pulmonology care. Specialised in complex lung diseases, sleep medicine, and critical care. Known for compassionate, clear communication and long-term patient outcomes.</p>
+            <a href="#book" class="inline-block mt-6 bg-teal-700 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-800 transition"><i class="fas fa-calendar-plus mr-2"></i> Book consultation</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CLINIC INFO ========== -->
+    <section id="clinic" class="py-16 md:py-24 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div class="text-center fade-up">
+          <div class="text-teal-600 text-sm font-semibold uppercase tracking-wide"><i class="fas fa-map-marker-alt mr-1"></i> Visit us</div>
+          <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-[-0.02em] text-slate-800">Clinic location & hours</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8 mt-12">
+          <div class="bg-white rounded-2xl p-6 border border-gray-100">
+            <h3 class="text-xl font-bold tracking-tight">Lung Care – The Pulmonary Clinic</h3>
+            <div class="mt-4 space-y-3">
+              <div class="flex gap-3"><i class="fas fa-location-dot text-teal-600 w-5 mt-0.5"></i><span class="text-sm md:text-base">18, Cowley Brown Road, R.S. Puram, Coimbatore – 641002</span></div>
+              <div class="flex gap-3"><i class="fas fa-clock text-teal-600 w-5"></i><span class="text-sm md:text-base">Mon–Sat: 6:00 PM – 8:30 PM</span></div>
+              <div class="flex gap-3"><i class="fas fa-phone-alt text-teal-600 w-5"></i><span class="text-sm md:text-base">+91 98765 43210</span></div>
+            </div>
+            <div class="flex flex-wrap gap-3 mt-6">
+              <a href="tel:+919876543210" class="bg-teal-700 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-teal-800 transition"><i class="fas fa-phone-alt mr-1"></i> Call now</a>
+              <a href="https://wa.me/919876543210" target="_blank" class="border border-teal-600 text-teal-700 px-5 py-2 rounded-full text-sm font-semibold hover:bg-teal-50 transition"><i class="fab fa-whatsapp mr-1"></i> WhatsApp</a>
+            </div>
+          </div>
+          <div class="rounded-2xl overflow-hidden h-64 md:h-auto border border-gray-100">
+            <iframe class="w-full h-full" src="https://maps.google.com/maps?q=R.S.+Puram,+Coimbatore&output=embed&z=14" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section id="testimonials" class="py-16 md:py-24 bg-white">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 text-center">
+        <div class="text-teal-600 text-sm font-semibold uppercase tracking-wide"><i class="fas fa-star-of-life mr-1"></i> Patient stories</div>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-[-0.02em] text-slate-800">What our patients say</h2>
+        <div class="relative mt-12 overflow-hidden">
+          <div id="testiTrack" class="testi-track flex transition-transform duration-500 ease-out">
+            <div class="min-w-full px-4">
+              <div class="bg-slate-50 p-6 md:p-8 rounded-2xl border border-gray-100">
+                <div class="flex justify-center text-amber-400 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-slate-700 italic leading-relaxed">"Dr. Arun transformed my sleep. After years of fatigue, CPAP therapy changed my life. Highly professional and caring."</p>
+                <p class="mt-4 font-semibold"><i class="fas fa-user-circle mr-1"></i> — Rajan K., 54, Coimbatore</p>
+              </div>
+            </div>
+            <div class="min-w-full px-4">
+              <div class="bg-slate-50 p-6 md:p-8 rounded-2xl border border-gray-100">
+                <div class="flex justify-center text-amber-400 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-slate-700 italic leading-relaxed">"Finally, my asthma is under control. Doctor took time to explain everything. Best pulmonologist in Coimbatore."</p>
+                <p class="mt-4 font-semibold"><i class="fas fa-user-circle mr-1"></i> — Meena S., 42, R.S. Puram</p>
+              </div>
+            </div>
+            <div class="min-w-full px-4">
+              <div class="bg-slate-50 p-6 md:p-8 rounded-2xl border border-gray-100">
+                <div class="flex justify-center text-amber-400 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="text-slate-700 italic leading-relaxed">"Very ethical, clear diagnosis. The clinic environment is calm and trustful."</p>
+                <p class="mt-4 font-semibold"><i class="fas fa-user-circle mr-1"></i> — Suresh M., 61, Tiruppur</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center gap-3 mt-6">
+            <button id="prevBtn" class="border border-gray-300 rounded-full w-10 h-10 hover:bg-teal-50 transition"><i class="fas fa-chevron-left"></i></button>
+            <button id="nextBtn" class="border border-gray-300 rounded-full w-10 h-10 hover:bg-teal-50 transition"><i class="fas fa-chevron-right"></i></button>
+          </div>
+          <div id="testiDots" class="flex justify-center gap-2 mt-5"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== BOOK APPOINTMENT ========== -->
+    <section id="book" class="py-16 md:py-24 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div class="grid lg:grid-cols-2 gap-12">
+          <div class="fade-up">
+            <div class="text-teal-600 text-sm font-semibold uppercase tracking-wide"><i class="fas fa-calendar-alt mr-1"></i> Secure booking</div>
+            <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-[-0.02em] text-slate-800 mt-2">Request an appointment</h2>
+            <p class="text-slate-600 leading-relaxed mt-4">Fill details and our team will confirm within hours. Walk-ins welcome during consultation hours.</p>
+            <div class="bg-white p-6 rounded-2xl border border-gray-100 mt-6">
+              <div class="flex gap-3 mb-3"><i class="fas fa-clock text-teal-600 w-5"></i><span>6:00 PM – 8:30 PM (Mon–Sat)</span></div>
+              <div class="flex gap-3"><i class="fas fa-location-dot text-teal-600 w-5"></i><span>18, Cowley Brown Rd, RS Puram</span></div>
+              <a href="tel:+919876543210" class="inline-block mt-4 bg-teal-700 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-teal-800 transition"><i class="fas fa-phone-alt mr-1"></i> Call to book</a>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl border border-gray-100 p-6 fade-up-delay-1">
+            <h3 class="text-xl font-bold mb-4"><i class="fas fa-user-edit mr-2 text-teal-700"></i> Patient details</h3>
+            <div class="space-y-4">
+              <div><label class="block text-xs font-semibold uppercase text-slate-500"><i class="fas fa-user mr-1"></i> Full name *</label><input type="text" id="appt-name" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 focus:border-teal-500 focus:ring-1 focus:ring-teal-200 outline-none text-sm md:text-base"></div>
+              <div><label class="block text-xs font-semibold uppercase text-slate-500"><i class="fas fa-phone-alt mr-1"></i> Phone *</label><input type="tel" id="appt-phone" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 focus:border-teal-500 focus:ring-1 focus:ring-teal-200 outline-none text-sm md:text-base"></div>
+              <div class="grid grid-cols-2 gap-4">
+                <div><label class="block text-xs font-semibold uppercase text-slate-500"><i class="fas fa-calendar-alt mr-1"></i> Age</label><input type="number" id="appt-age" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm md:text-base"></div>
+                <div><label class="block text-xs font-semibold uppercase text-slate-500"><i class="fas fa-calendar-week mr-1"></i> Preferred date</label><input type="date" id="appt-date" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm md:text-base"></div>
+              </div>
+              <div><label class="block text-xs font-semibold uppercase text-slate-500"><i class="fas fa-stethoscope mr-1"></i> Primary concern *</label><select id="appt-concern" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm md:text-base"><option>Sleep Apnoea / Snoring</option><option>Asthma</option><option>COPD</option><option>Chronic Cough</option><option>Breathlessness</option><option>General pulmonology</option></select></div>
+              <div><label class="block text-xs font-semibold uppercase text-slate-500"><i class="fas fa-edit mr-1"></i> Notes</label><textarea id="appt-notes" rows="2" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm md:text-base"></textarea></div>
+              <button onclick="saveAppointment()" class="w-full bg-teal-700 hover:bg-teal-800 text-white py-3 rounded-xl font-semibold transition"><i class="fas fa-check-circle mr-2"></i> Confirm appointment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== PREMIUM FOOTER (polished) ========== -->
+  <footer class="bg-slate-900 text-white pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div>
+          <div class="font-display text-xl font-bold">LUNG CARE</div>
+          <div class="text-teal-300 text-xs uppercase mt-1">Dr. Arun Gangadhar · Pulmonology</div>
+          <p class="text-slate-400 text-sm leading-relaxed mt-4">Trusted pulmonary care in Coimbatore with international standards and compassionate approach.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-sm uppercase tracking-wider"><i class="fas fa-link mr-1"></i> Quick links</h4>
+          <ul class="mt-4 space-y-2">
+            <li><a href="#home" class="text-slate-400 hover:text-white text-sm transition"><i class="fas fa-angle-right mr-1"></i> Home</a></li>
+            <li><a href="#doctor" class="text-slate-400 hover:text-white text-sm transition"><i class="fas fa-angle-right mr-1"></i> Doctor</a></li>
+            <li><a href="#book" class="text-slate-400 hover:text-white text-sm transition"><i class="fas fa-angle-right mr-1"></i> Appointment</a></li>
+            <li><a href="#" onclick="showAdminPanel(); return false;" class="text-slate-400 hover:text-white text-sm transition"><i class="fas fa-shield-alt mr-1"></i> Admin panel</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-sm uppercase tracking-wider"><i class="fas fa-clock mr-1"></i> Consultation</h4>
+          <ul class="mt-4 space-y-2 text-sm text-slate-400">
+            <li class="flex gap-2"><i class="fas fa-clock w-5"></i> Mon–Sat: 6PM – 8:30PM</li>
+            <li class="flex gap-2"><i class="fas fa-phone-alt w-5"></i> +91 98765 43210</li>
+            <li class="flex gap-2"><i class="fas fa-envelope w-5"></i> care@lungcare.com</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-sm uppercase tracking-wider"><i class="fas fa-share-alt mr-1"></i> Follow us</h4>
+          <div class="flex gap-4 mt-4">
+            <a href="#" class="bg-slate-800 w-10 h-10 rounded-full flex items-center justify-center hover:bg-teal-700 transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="bg-slate-800 w-10 h-10 rounded-full flex items-center justify-center hover:bg-teal-700 transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="bg-slate-800 w-10 h-10 rounded-full flex items-center justify-center hover:bg-teal-700 transition"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-slate-800 mt-12 pt-6 text-center text-slate-500 text-xs">© 2026 Lung Care — Information purpose only. Medical advice requires consultation.</div>
+    </div>
+  </footer>
+
+  <!-- Toast & Admin Panel (preserved) -->
+  <div id="toastMessage" class="fixed bottom-6 right-6 bg-teal-700 text-white px-5 py-3 rounded-full shadow-lg z-50 opacity-0 transition-all duration-300 pointer-events-none"></div>
+  <div id="adminSection" class="fixed inset-0 bg-white z-50 overflow-auto hidden">
+    <div class="max-w-6xl mx-auto px-5 py-10">
+      <div id="adminLoginDiv" class="max-w-md mx-auto bg-slate-50 p-8 rounded-2xl border border-gray-100">
+        <h2 class="text-2xl font-bold"><i class="fas fa-lock mr-2"></i> Admin access</h2>
+        <input type="text" id="adminUser" placeholder="admin" class="w-full border rounded-xl p-3 mt-4">
+        <input type="password" id="adminPass" placeholder="password" class="w-full border rounded-xl p-3 mt-3">
+        <button onclick="adminLogin()" class="mt-4 bg-teal-700 text-white w-full py-2 rounded-xl font-semibold"><i class="fas fa-sign-in-alt mr-1"></i> Login</button>
+        <p class="text-center mt-4"><a href="#" onclick="hideAdminPanel(); return false;" class="text-teal-700"><i class="fas fa-arrow-left mr-1"></i> Back to site</a></p>
+      </div>
+      <div id="adminDashboard" class="hidden">
+        <div class="flex justify-between items-center flex-wrap mb-6">
+          <h2 class="text-2xl font-bold"><i class="fas fa-calendar-check mr-2"></i> Appointments</h2>
+          <div>
+            <button onclick="exportCSVdata()" class="border border-teal-600 text-teal-700 px-4 py-2 rounded-full text-sm font-semibold"><i class="fas fa-download mr-1"></i> Export CSV</button>
+            <button onclick="hideAdminPanel()" class="ml-2 bg-slate-200 px-4 py-2 rounded-full text-sm"><i class="fas fa-times mr-1"></i> Close</button>
+          </div>
+        </div>
+        <div class="overflow-x-auto bg-white rounded-xl border border-gray-100">
+          <table class="min-w-full text-sm">
+            <thead class="bg-slate-50">
+              <tr><th class="p-3 text-left">#</th><th>Name</th><th>Phone</th><th>Concern</th><th>Status</th><th>Action</th></tr>
+            </thead>
+            <tbody id="adminTableBody"></tbody>
+          </table>
+          <p id="noApptsMsg" class="text-center p-8 text-slate-500"><i class="fas fa-inbox mr-1"></i> No appointments</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // All original functionality preserved exactly, only UI improved.
+    const STORAGE_KEY = 'lungcare_clinic_data';
+    function getAppointments() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch(e) { return []; } }
+    function saveToLocal(appointments) { localStorage.setItem(STORAGE_KEY, JSON.stringify(appointments)); }
+    function showToast(msg, isError = false) { const toast = document.getElementById('toastMessage'); toast.textContent = msg; toast.classList.remove('bg-red-600'); if(isError) toast.classList.add('bg-red-600'); toast.classList.add('opacity-100'); setTimeout(() => toast.classList.remove('opacity-100'), 3000); }
+    window.saveAppointment = function() { const name = document.getElementById('appt-name').value.trim(); const phone = document.getElementById('appt-phone').value.trim(); const concern = document.getElementById('appt-concern').value; if(!name) return showToast('Please enter full name', true); if(!phone || phone.length<7) return showToast('Valid phone number required', true); if(!concern) return showToast('Select a concern', true); const age = document.getElementById('appt-age').value; const date = document.getElementById('appt-date').value; const notes = document.getElementById('appt-notes').value; const appointments = getAppointments(); appointments.unshift({ id: Date.now(), name, phone, age, date, concern, notes, status:'pending', createdAt: new Date().toLocaleString() }); saveToLocal(appointments); document.getElementById('appt-name').value = ''; document.getElementById('appt-phone').value = ''; document.getElementById('appt-age').value = ''; document.getElementById('appt-notes').value = ''; document.getElementById('appt-date').value = ''; document.getElementById('appt-concern').value = 'Sleep Apnoea / Snoring'; showToast('✅ Appointment confirmed! We will contact you.'); if(document.getElementById('adminDashboard')?.style.display === 'block') renderAdminTable(); };
+    function renderAdminTable() { const appts = getAppointments(); const tbody = document.getElementById('adminTableBody'); const noMsg = document.getElementById('noApptsMsg'); if(!tbody) return; if(appts.length===0) { tbody.innerHTML=''; noMsg.style.display='block'; return; } noMsg.style.display='none'; tbody.innerHTML = appts.map((a,i)=>`<tr class="border-b"><td class="p-3">${i+1}</td><td class="p-3">${escapeHtml(a.name)}</td><td class="p-3">${escapeHtml(a.phone)}</td><td class="p-3">${escapeHtml(a.concern)}</td><td class="p-3"><span class="${a.status==='completed'?'bg-green-100 text-green-800':'bg-amber-100 text-amber-800'} px-2 py-1 rounded-full text-xs">${a.status==='completed'?'Completed':'Pending'}</span></td><td class="p-3">${a.status!=='completed'? `<button onclick="markComplete(${a.id})" class="text-teal-700 border border-teal-300 px-2 py-1 rounded text-xs mr-1"><i class="fas fa-check-circle"></i> Done</button>` : ''}<button onclick="deleteAppointment(${a.id})" class="text-red-600 border border-red-300 px-2 py-1 rounded text-xs"><i class="fas fa-trash-alt"></i> Del</button></td></tr>`).join(''); }
+    window.deleteAppointment = function(id) { if(!confirm('Delete?')) return; let appts = getAppointments().filter(a=> a.id !== id); saveToLocal(appts); renderAdminTable(); showToast('Deleted'); };
+    window.markComplete = function(id) { let appts = getAppointments().map(a=> a.id===id? {...a, status:'completed'} : a); saveToLocal(appts); renderAdminTable(); showToast('Marked completed'); };
+    window.adminLogin = function() { const u = document.getElementById('adminUser').value.trim(); const p = document.getElementById('adminPass').value; if(u === 'admin' && p === 'lungcare2026') { document.getElementById('adminLoginDiv').style.display = 'none'; document.getElementById('adminDashboard').style.display = 'block'; renderAdminTable(); } else showToast('Invalid credentials (admin / lungcare2026)', true); };
+    window.showAdminPanel = function() { document.getElementById('adminSection').classList.remove('hidden'); document.getElementById('adminLoginDiv').style.display = 'block'; document.getElementById('adminDashboard').style.display = 'none'; };
+    window.hideAdminPanel = function() { document.getElementById('adminSection').classList.add('hidden'); };
+    function exportCSVdata() { const appts = getAppointments(); if(!appts.length) return showToast('No data', true); let csvRows = [['Name','Phone','Age','Concern','Status','Date','Notes']]; appts.forEach(a=>{ csvRows.push([a.name,a.phone,a.age||'',a.concern,a.status,a.date||'',a.notes||'']); }); const csv = csvRows.map(row=>row.map(cell=>`"${String(cell).replace(/"/g,'""')}"`).join(',')).join('\n'); const blob = new Blob([csv], {type:'text/csv'}); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'lungcare_appointments.csv'; link.click(); URL.revokeObjectURL(link.href); }
+    window.exportCSVdata = exportCSVdata;
+    function escapeHtml(str){ if(!str) return ''; return String(str).replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+    let slideIndex = 0; const track = document.getElementById('testiTrack'); const totalSlides = track ? track.children.length : 0;
+    function updateCarousel() { if(track) track.style.transform = `translateX(-${slideIndex * 100}%)`; updateDots(); }
+    function updateDots() { document.querySelectorAll('.dot').forEach((d,i)=> d.classList.toggle('active', i===slideIndex)); }
+    function buildDots() { const container = document.getElementById('testiDots'); if(!container) return; container.innerHTML = ''; for(let i=0;i<totalSlides;i++){ const dot = document.createElement('div'); dot.className = 'dot' + (i===0?' active':''); dot.onclick = (()=>{ slideIndex=i; updateCarousel(); }); container.appendChild(dot); } updateDots(); }
+    document.getElementById('prevBtn')?.addEventListener('click', ()=>{ slideIndex = (slideIndex-1+totalSlides)%totalSlides; updateCarousel(); });
+    document.getElementById('nextBtn')?.addEventListener('click', ()=>{ slideIndex = (slideIndex+1)%totalSlides; updateCarousel(); });
+    const hamburger = document.getElementById('hamburgerBtn'); const mobileMenu = document.getElementById('mobileMenu'); const closeMobile = document.getElementById('closeMobileBtn');
+    hamburger?.addEventListener('click', ()=> { mobileMenu.classList.toggle('-translate-x-full'); });
+    closeMobile?.addEventListener('click', ()=> mobileMenu.classList.add('-translate-x-full'));
+    document.querySelectorAll('.mobile-nav-link').forEach(link => link.addEventListener('click', ()=> mobileMenu.classList.add('-translate-x-full')));
+    const faders = document.querySelectorAll('.fade-up, .fade-up-delay-1, .fade-up-delay-2, .fade-up-delay-3');
+    const appearOnScroll = new IntersectionObserver((entries)=> { entries.forEach(entry=> { if(entry.isIntersecting) entry.target.style.opacity = '1'; }); }, {threshold:0.1});
+    faders.forEach(fader => { fader.style.opacity = '0'; appearOnScroll.observe(fader); });
+    window.addEventListener('scroll', ()=>{ const sections = ['home','symptoms','services','doctor','clinic','testimonials','book']; let current = ''; for(let id of sections){ const el = document.getElementById(id); if(el && window.scrollY >= el.offsetTop - 120) current = id; } document.querySelectorAll('.nav-link').forEach(link=>{ link.classList.remove('active'); if(link.getAttribute('href') === '#'+current) link.classList.add('active'); }); });
+    document.addEventListener('DOMContentLoaded', ()=>{ buildDots(); updateCarousel(); setInterval(()=>{ slideIndex = (slideIndex+1)%totalSlides; updateCarousel(); }, 6000); const dateInput = document.getElementById('appt-date'); if(dateInput){ dateInput.min = new Date().toISOString().split('T')[0]; } });
+  </script>
+</body>
+</html>
